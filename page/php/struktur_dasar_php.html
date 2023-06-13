@@ -98,51 +98,152 @@
 
     <!-- 404 Start -->
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
+        <div class="container text-light">
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Highlight.js support 54 bahasa pemrograman dan 26 style berbeda. Highlight.js ini sederhana dan sangat mudah dipakai dan disesuaikan. Sayangnya belum tersedia penomoran baris kode dalam style sintaknya Highlight.js support 54 bahasa pemrograman dan 26 style berbeda.</p>
-
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore 
-                    et dolore <code>window.addEvent('domready', async (a,b) => {});</code> magna aliquyam erat.
-                </p>
-                <script src="https://gist.github.com/codemetik/b6564804c0e6b2d00d46688727a61800.js"></script>
+                    <h3># Mengenal PHP</h3><hr>
+                    <ol>
+                        <li>PHP Merupakan singkatan recursive dari <b>P</b>HP : <b>H</b>ypertext <b>P</b>reprocessor</li>
+                        <li>Pertama kali dibuat oleh <b>Rasmus Lerdorf</b> pada tahun 1994.</li>
+                        <li>Harus ditulis di antara tag</li>
+                            <ul>
+                                <li><code>< ? dan ?></code></li>
+                                <li><code>< ?php dan ?></code></li>
+                                <li><code><script language="php"> dan </script></code></li>
+                                <li><code><% dan %></code></li>
+                            </ul>
+                        <li>etiap satu statement (perintah) biasanya diakhiri dengan titik koma (;)</li>
+                        <li>CASE SENSITIVE untuk nama identifier yang dibuat oleh user (berupa :variable, konstanta, fungsi, dll), namun TIDAK CASE SENSITIVE untuk identifier <i>built-in</i> dari PHP. jadi :</li>
+                            <ul>
+                                <li>$nama != $Nama != $NAMA</li>
+                                <li>hitungLuas() != HitungLuas()</li>
+                                <li>echo = ECHO</li>
+                                <li>while = WHILE</li>
+                            </ul>
+                            <li>Mudah dipelajari.</li>
+                    </ol>
+                    
+                    <h3># Say Hello to PHP</h3><hr>
+                    <ol>
+                        <li>Ketikan perintah dibawah ini di editor :</li>
+                    
+                    <i><u>Program 1.1</u></i>
+                    <table>
+                        <tr>
+                            <td>Nama File </td>
+                            <td>: hello.php</td>
+                        </tr>
+                        <tr>
+                            <td>Deskripsi </td>
+                            <td>: Menampilkan sebuah string di layar.</td>
+                        </tr>
+                    </table>
         <!-- Code to highlight -->
 <pre data-enlighter-language="php">
-<?php
-if (function_exists('exif_read_data')) {
-   echo "Fungsi exif_read_data() ada di PHP.<br>\n";
-  } else {
-   echo "Fungsi exif_read_data() tidak ada di PHP.<br>\n";
-  }
+< ?php
+echo "Hello, Nama saya PHP";
 ?>
-</pre>
+</pre> 
+                        <li>Simpan dengan nama "<b>hello.php</b>" di <i>dokument-root</i> komputer anda.</li>
+                        <li>Buka browser dan ketikan alamat http://localhost/hello.php</li>
+                        <li>Lihat asilnya di browser. Akan terlihat tampilan seperti berkut :</li>
+                        <img src="../../img/imgartikel/hello php.png">
+                    </ol>
 
-<pre data-enlighter-language="css">
-    /*buttons used in codegroups + toolbar*/
-.enlighter-btn{
-    display: inline-block;
-    margin: 0px 5px 0px 5px;
-    padding: 3px 5px 3px 5px;
-    border: solid 1px #333333;
-    background-color: #f0f0f0;
-    cursor: pointer;
-}
+                    <h3># Variable</h3><hr>
+                    <ul>
+                        <li>Digunakan untuk menyimpan sebuah value, data atau informasi</li>
+                        <li>Nama variable diawali dengan tanda $</li>
+                        <li>Panjang tidak terbatas</li>
+                        <li>Setelah tanda $ diawali oleh huruf atau <i>under-scrore</i> (_) kerakter berikutnya yang bisa terdiri dari huruf, angka, dan karakter tertentu yang diperbolehkan (karakter ASCII dari 127 - 255).</li>
+                        <li>Bersifat case-sensitive</li>
+                        <li>Tidak perlu dideklarasikan</li>
+                        <li>Tidak boleh mengandung spasi.</li>
+                        <li>Contoh :</li>
+                        <table class="table table-sm">
+                            <tr>
+                                <th>Benar</th>
+                                <th>Salah</th>
+                            </tr>
+                            <tr>
+                                <td>$_name</td><td>$3name</td>
+                            </tr>
+                            <tr>
+                                <td>$first_name</td><td>$name?</td>
+                            </tr>
+                            <tr>
+                                <td>$name3</td><td>$first+name</td>
+                            </tr>
+                            <tr>
+                                <td>$name_3</td><td>$first.name</td>
+                            </tr>
+                            <tr>
+                                <td></td><td>$first name</td>
+                            </tr>
+                        </table>
+                        <br>
+                        <i><u>Program 1.2</u></i>
+                        <table>
+                        <tr>
+                            <td>Nama File </td>
+                            <td>: variable.php</td>
+                        </tr>
+                        <tr>
+                            <td>Deskripsi </td>
+                            <td>: Mengisi dan menampilkan variable.</td>
+                        </tr>
+                        </table>
+                                <!-- Code to highlight -->
+<pre data-enlighter-language="php">
+< ?php
+$nim = "072023";
+$nama = 'Nicolas Syahputra';
 
-/* buttons*/
-.enlighter-btn-raw{
-    background-image: data-uri('icons/enlighter_code.svg');
-}
+echo "NIM : " . $nim. "<br>";
+echo "Nama : $nama";
+?>
+</pre> 
+<li><u>Hasil tampilan dari file variable.php</u></li>
+<img src="../../img/imgartikel/variable php.png">
+                    </ul>
 
-.enlighter-btn-window{
-    background-image: data-uri('icons/enlighter_rawcode.svg');
-}
+                    <h3>Tipe Data</h3><hr>
+                    <p>Pada PHP, tipe data variable tidak didefinisikan oleh programmer, akan tetapi secara otomatis ditentukan oleh interpreter PHP, Namu demikian, PHP mendukung 8 buah tipe data primitif, Yaitu :</p>
+                    <ol>
+                        <li>boolean</li>
+                        <li>integer</li>
+                        <li>float</li>
+                        <li>string</li>
+                        <li>array</li>
+                        <li>object</li>
+                        <li>resource</li>
+                        <li>NULL</li>
+                    </ol>
+                    <i><u>Program 1.3</u></i>
+                        <table>
+                        <tr>
+                            <td>Nama File </td>
+                            <td>: tipe.php</td>
+                        </tr>
+                        <tr>
+                            <td>Deskripsi </td>
+                            <td>: Penanganan beberapa tipe data dasar dalam php.</td>
+                        </tr>
+                        </table>
+                                <!-- Code to highlight -->
+<pre data-enlighter-language="php">
+< ?php
+$nim = "072023";
+$nama = 'Nicolas Syahputra';
+$umur = 22;
+$nilai = 80.15;
+$status = TRUE;
 
-.enlighter-btn-website{
-    background-image: data-uri('icons/enlighter_icon_white.svg');
-}
-</pre>
-                </div>
+echo "NIM : " . $nim. "<br>";
+echo "Nama : $nama<br>";
+?>
+</pre> 
+               </div>
             </div>
         </div>
         <div class="container text-center">
