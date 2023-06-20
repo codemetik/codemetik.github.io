@@ -29,6 +29,9 @@
 
     <!-- Template Stylesheet -->
     <link href="../../css/style.css" rel="stylesheet">
+
+            <!-- EnlighterJS CSS !-->
+    <link rel="stylesheet" href="../../EnlighterJS/dist/enlighterjs.monokai.min.css" />
 </head>
 
 <body>
@@ -93,6 +96,114 @@
 
     <!-- 404 Start -->
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container text-light">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3># Struktur Kondisi</h3><hr>
+                    <p>Secara sederhana, kondisi IF digambarkan sebagai sebuah kondisi pilihan. Sehingga banyak para pengguna PHP lebih akrab sebagai kondisi percabangan. Percabangan dalam sebuah PHP dibutuhkan untuk sebuah kondisi yang memang dibutuhkan lebih dari 1 buah keputusan. Sebagai logika dasar, amati contoh kalimat berikut <b>"Jika Nilai Anda 75 ke atas, Maka Anda LULUS."</b></p>
+                    <p>Dari kalimat diatas ada dua kondisi yang dipergunakan yaitu:</p>
+                    <ol>
+                        <li>"Jika Nilai Anda sama dengan atau lebih dari 75, Anda LULUS."</li>
+                        <li>"Jika Nilai Anda kurang dari, Anda TIDAK LULUS."</li>
+                    </ol>
+<table class="table table-danger table-hover table-sm">
+    <tr>
+        <td>
+            <i><u>Struktur kondisi if</u></i><br>
+        <code>
+        if (kondisi) { 
+         statement-jika-kondisi-true; 
+        } 
+        </code>
+        <p>
+            <i><u>Keterangan</u></i>
+            <ul>
+                <li><b>Kondisi</b> merupakan statemen atau variable yang akan diperiksa TRUE atau FALSE-nya.</li>
+            </ul>
+        </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <i><u>Struktur kondisi if ... else</u></i><br>
+            <code>
+            if (kondisi) { 
+             statement-jika-kondisi-true; 
+            } else { 
+             statement-jika-kondisi-false; 
+            } 
+            </code>
+            <p>
+                <i><u>Keterangan</u></i>
+                <ul>
+                    <li><b>Kondisi</b> merupakan statemen atau variable yang akan diperiksa TRUE atau FALSE-nya. Jika kondisinya TRUE maka statemen yang berbeda di blok if maka dieksekusi, sebaliknya jika kondisi FALSE maka statemen yang berada di blok else yang akan dieksekusi.</li>
+                </ul>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <i><u>Struktur kondisi khusus</u></i><br>
+            <code>
+            (kondisi) ? benar : salah;
+            </code>
+            <p>
+                <i><u>Keterangan</u></i>
+                <ul>
+                    <li><b>Kondisi</b> merupakan statemen atau variable yang akan diperiksa TRUE atau FALSE-nya. Statemen pada blok benar dan salah hanya boleh satu statemen saja.</li>
+                </ul>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <i><u>Struktur kondisi Switch ... Case</u></i><br>
+            <code>
+            switch ($var) { 
+             case '1' : statement-1; break; 
+             case '2' : statement-2; break; 
+             .... 
+            } 
+            </code>
+            <p>
+                <i><u>Keterangan</u></i>
+                <ul>
+                    <li><b>$var</b> merupakan variable yang akan diperiksa isi atau nilainya. Tipe data variable ini tidak dibatasi.</li>
+                    <li>Value pada <b>case</b> juga bisa berupa string, integer, boolean, bahkan bisa berupa conditional-statement. Boleh memakai kutip tunggal maupun kutip ganda.</li>
+                </ul>
+            </p>
+        </td>
+    </tr>
+</table>
+
+<i><u>Program 2.1</u></i>
+<table>
+<tr>
+    <td>Nama File </td>
+    <td>: if.php</td>
+</tr>
+<tr>
+    <td>Deskripsi </td>
+    <td>: Program struktur kondisi if.</td>
+</tr>
+</table>
+<!-- Code to highlight -->
+<pre data-enlighter-language="php">
+< ?php 
+$nilai = 80; 
+if ($nilai >= 60) { 
+ echo "Nilai Anda $nilai, Anda LULUS"; 
+} 
+?>
+</pre>
+<p><u>Hasil tampilan file komentar.php</u></p>
+<img src="../../img/imgartikel/if.PNG" class="img-fluid w-75 align-self-end">
+<br><br>
+
+                </div>
+            </div>
+        </div>
+
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -187,6 +298,22 @@
 
     <!-- Template Javascript -->
     <script src="../../js/main.js"></script>
+
+            <!-- EnlighterJS -->
+    <script type="text/javascript" src="../../EnlighterJS/dist/enlighterjs.min.js"></script>
+
+    <!-- Init Code -->
+    <script type="text/javascript">
+        // - highlight all pre + code tags (CSS3 selectors)
+        // - use javascript as default language
+        // - use theme "enlighter" as default theme
+        // - replace tabs with 2 spaces
+        EnlighterJS.init('pre', 'code', {
+                language : 'php,css',
+                theme: 'monokai',
+                indent : 2
+        });
+    </script>
 </body>
 
 </html>
