@@ -1,318 +1,159 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Membuat layout website sederhana menggunakan HTML dan CSS</title>
-	<style type="text/css">
-	@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300);
-	 
-	body {
-		background: #eee;
-		margin:0;
-		font-family: 'Open Sans', sans-serif;
-	}
-	 
-	hr {
-		border:0;
-		background:#dedede;
-		height:1px;
-	}		
-	 
-	header{
-		text-align: center;
-		color: #232323;
-	}
-	 
-	header .judul{
-		font-size: 17pt;
-	}
-	 
-	header .deskripsi{
-		font-size: 11pt;
-	}
-	 
-	.wrap {
-		width: 950px;
-		margin:25px auto;
-	}
-	 
-	nav.menu ul {
-		overflow:hidden;
-		color:#fff;
-		list-style: none;
-		float:left;
-		padding:0;
-		width: 650px;
-		margin:0 0 0;
-		background: #1abc9c;
-		-webkit-box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.55);
-		-moz-box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.55);
-		box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.55);
-	}
-	 
-	nav.menu ul li {
-		margin:0;
-		float:left;
-	}
-	 
-	nav.menu ul a {
-		padding:25px;
-		display:block;
-		font-weight:600;
-		font-size: 16px;
-		color:#fff;
-		text-transform: uppercase;
-		transition: all 0.5s ease;
-		text-decoration: none;
-	}
-	 
-	nav.menu ul a:hover {
-		text-decoration: underline;
-		background:#16a085;
-	}
-	 
-	.sidebar {
-		float:right;
-		width:275px;
-	}
-	 
-	.sidebar .widget {
-		padding:25px;
-		margin:0 0 25px;
-		background:#fff;
-		border-bottom: 2px solid #fff;
-		transition: all 0.5s ease;
-	}
-	 
-	.sidebar .widget:hover {
-		border-bottom: 2px solid #3498db;
-	}
-	 
-	.sidebar .widget h2 {
-		padding:0;
-		margin:0 0 15px;
-		color:#3498db;
-		font-size: 18px;
-		font-weight:800;
-		text-transform: uppercase;
-	}
-	 
-	.sidebar .widget p {
-		font-size: 14px;
-	}
-	 
-	.sidebar .widget p:last-child {
-		margin:0;
-	}
-	 
-	.blog {
-		float:left;
-	}
-	 
-	.conteudo {
-		width:600px;
-		padding:25px;
-		margin:25px auto;
-		background: #fff;
-		border:1px solid #dedede;
-		-webkit-box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.35);
-		-moz-box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.35);
-		box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.35);
-	}
-	 
-	.conteudo img {
-		min-width: 650px;
-		margin:0 0 25px -25px;
-		max-width: 650px;
-	}
-	 
-	.conteudo h1 {
-		padding:0;
-		margin:0 0 15px;
-		font-weight: normal;
-		color: #666;
-		font-family: Georgia;
-	}
-	 
-	.conteudo p:last-child {
-		margin: 0;
-	}
-	 
-	.conteudo .continue-lendo {
-		color:#000;
-		transition: all 0.5s ease;
-		text-decoration: none;
-		font-weight: 700; 
-	}
-	 
-	.conteudo .continue-lendo:hover {
-		margin-left:10px;
-	}
-	 
-	.post-info {
-		float: right;
-		font-size: 12px;
-		margin: -10px 0 15px;
-		text-transform: uppercase;
-	}
-	 
-	@media screen and (max-width: 960px) {
-	 
-		.header {
-			position:inherit;
-		}
-	 
-		.wrap {
-			width: 90%;
-			margin:25px auto;
-		}
-		.sidebar {
-			width:100%;
-			margin:25px 0 0;
-			float:right;
-		}
-	 
-		.sidebar .widget {
-			padding:5%;
-		}
-	 
-		nav.menu ul {
-			width: 100%;
-		}
-	 
-		nav.menu ul {
-			float:inherit;
-		}
-	 
-		nav.menu ul li {
-			float:inherit;
-			margin:0;
-		}
-	 
-		nav.menu ul a {
-			padding:15px;
-			font-size: 16px;
-			border-top:1px solid #1abf9f;
-			border-bottom:1px solid #16a085;
-		}
-	 
-		.blog {
-			width:90%;
-		}
-	 
-		.conteudo {
-			float:inherit;
-			margin:0 auto 25px;
-			width:101%;
-			border:1px solid #dedede;
-			padding:5%;  
-			background: #fff;
-		}
-	 
-		.conteudo img {
-			max-width: 110%;
-			margin:0 0 25px -5%;
-			min-width: 110%;
-		}
-	 
-		.conteudo .continue-lendo:hover {
-			margin-left:0;
-		}
-	 
-	 
-	}
-	 
-	@media screen and (max-width: 460px) {
-	 
-		nav.menu ul a {
-			padding:15px;
-			font-size: 14px;
-		}
-	 
-		.sidebar {
-			display:none
-		}
-		.post-info {
-			display:none;
-		}
-	 
-		.conteudo {
-			margin:25px auto;
-		}
-	 
-		.conteudo img {
-			margin:-5% 0 25px -5%;
-		}			
-	}
-	</style>
-</head>
-<body>
-<!-- bagian header template -->
-	<header>
-		<h1 class="judul">MEMBUAT LAYOUT WEB RESPONSIVE</h1>
-		<p class="deskripsi">Menuggunakan HTML dan CSS.</p>
-	</header>
-	<!-- akhir bagian header template -->
-	
-	<div class="wrap">
-		<!-- bagian menu		 -->
-		<nav class="menu">
-			<ul>
-				<li>
-					<a href="#">Home</a>
-				</li>
-				<li>
-					<a href="#">Profil</a>
-				</li>
-				<li>
-					<a href="#">Kontak</a>
-				</li>
-			</ul>
-		</nav>
-		<!-- akhir bagian menu -->
- 
-		<!-- bagian sidebar website -->
-		<aside class="sidebar">
-			<div class="widget">
-				<h2>Tutorial</h2>
-				<p>Selamat datang di www.malasngoding.com, situs ini menyediakan tutorial pemrograman web, mobile & desktop.</p>
-			</div>
-			<div class="widget">
-				<h2>Ebook Gratis</h2>
-				<p>Teman-teman bisa mendapatkan ebook tutorial gratis di sini <a target="_blank" href="https://www.malasngoding.com">www.malasngoding.com</a>.</p>
-			</div>
-		</aside>
-		<!-- akhir bagian sidebar website -->
- 
-		<!-- bagian konten Blog -->
-		<div class="blog">
-			<div class="conteudo">
-				<div class="post-info">
-					Di Posting Oleh <b>Muhammad Irfa Nufaiyal Kharish</b>
-				</div>
-				<img src="img/css.png">
-				<h1> Belajar CSS Lengkap </h1>
-				<hr>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>				
-				<a href="#" class="continue-lendo">Selengkapnya →</a>
-			</div>
-			<div class="conteudo">
-				<div class="post-info">
-					Di Posting Oleh <b>Muhammad Irfa Nufaiyal Kharish</b>
-				</div>
-				<img src="img/html.png">
-				<h1> Belajar HTML Lengkap </h1>
-				<hr>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>				
-				<a href="#" class="continue-lendo">Selengkapnya →</a>
-			</div>
-		</div>
-		<!-- akhir bagian konten Blog -->
-	</div>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Offcanvas template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="offcanvas.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-light">
+
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Offcanvas navbar</a>
+      <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Switch account</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="nav-scroller bg-white box-shadow">
+      <nav class="nav nav-underline">
+        <a class="nav-link active" href="#">Dashboard</a>
+        <a class="nav-link" href="#">
+          Friends
+          <span class="badge badge-pill bg-light align-text-bottom">27</span>
+        </a>
+        <a class="nav-link" href="#">Explore</a>
+        <a class="nav-link" href="#">Suggestions</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+      </nav>
+    </div>
+
+    <main role="main" class="container">
+      <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
+        <img class="mr-3" src="https://getbootstrap.com/assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">
+        <div class="lh-100">
+          <h6 class="mb-0 text-white lh-100">Bootstrap</h6>
+          <small>Since 2011</small>
+        </div>
+      </div>
+
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+        <div class="media text-muted pt-3">
+          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">@username</strong>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+          </p>
+        </div>
+        <div class="media text-muted pt-3">
+          <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">@username</strong>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+          </p>
+        </div>
+        <div class="media text-muted pt-3">
+          <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">@username</strong>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+          </p>
+        </div>
+        <small class="d-block text-right mt-3">
+          <a href="#">All updates</a>
+        </small>
+      </div>
+
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Suggestions</h6>
+        <div class="media text-muted pt-3">
+          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">Full Name</strong>
+              <a href="#">Follow</a>
+            </div>
+            <span class="d-block">@username</span>
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">Full Name</strong>
+              <a href="#">Follow</a>
+            </div>
+            <span class="d-block">@username</span>
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">Full Name</strong>
+              <a href="#">Follow</a>
+            </div>
+            <span class="d-block">@username</span>
+          </div>
+        </div>
+        <small class="d-block text-right mt-3">
+          <a href="#">All suggestions</a>
+        </small>
+      </div>
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+    <script src="../../../../assets/js/vendor/holder.min.js"></script>
+    <script src="offcanvas.js"></script>
+  </body>
 </html>
