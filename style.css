@@ -1,0 +1,110 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styling Header */
+.header {
+  background-color: #2c3e50; /* Warna latar gelap */
+  color: white; /* Warna teks */
+  padding: 15px 20px; /* Jarak dalam */
+  display: flex; /* Menggunakan Flexbox untuk tata letak */
+  justify-content: space-between; /* Elemen diatur dengan jarak di antara */
+  align-items: center; /* Vertikal rata tengah */
+  position: sticky; /* Header tetap di atas saat scroll */
+  top: 0; /* Posisi di atas */
+  z-index: 100; /* Pastikan header di atas elemen lain */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Bayangan untuk efek */
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header .nav ul {
+  list-style: none; /* Hilangkan bullet list */
+  display: flex; /* Menu horizontal */
+}
+
+.header .nav ul li {
+  margin-left: 20px; /* Jarak antar menu */
+}
+
+.header .nav ul li a {
+  color: white;
+  text-decoration: none; /* Hilangkan garis bawah */
+  font-size: 16px;
+}
+
+.header .nav ul li a:hover {
+  color: #3498db; /* Warna saat hover */
+}
+
+/* Styling Container */
+.container {
+  display: flex; /* Menggunakan Flexbox untuk sidebar dan konten */
+  min-height: calc(100vh - 70px); /* Tinggi container menyesuaikan layar */
+}
+
+/* Styling Sidebar */
+.sidebar {
+  width: 250px; /* Lebar sidebar */
+  background-color: #ecf0f1; /* Warna latar terang */
+  padding: 20px;
+  border-right: 1px solid #ddd; /* Garis pemisah */
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-size: 16px;
+}
+
+.sidebar ul li a:hover {
+  color: #3498db;
+}
+
+/* Styling Konten Utama */
+.main-content {
+  flex: 1; /* Mengisi sisa ruang */
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Sidebar dan konten bertumpuk */
+  }
+
+  .sidebar {
+    width: 100%; /* Sidebar penuh pada layar kecil */
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .header {
+    flex-direction: column; /* Header bertumpuk pada layar kecil */
+    align-items: flex-start;
+  }
+
+  .header .nav ul {
+    flex-direction: column; /* Menu navigasi bertumpuk */
+    margin-top: 10px;
+  }
+
+  .header .nav ul li {
+    margin: 5px 0; /* Jarak antar menu */
+  }
+}
