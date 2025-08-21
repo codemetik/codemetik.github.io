@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Header dan Sidebar</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Header dengan Ikon Collapse</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- Header -->
   <header class="header">
     <div class="logo">Logo</div>
+    <button class="hamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <nav class="nav">
       <ul>
         <li><a href="#">Beranda</a></li>
@@ -36,5 +41,7 @@
       <p>Ini adalah isi konten utama dari halaman web.</p>
     </main>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
