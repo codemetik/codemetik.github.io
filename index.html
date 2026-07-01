@@ -1,47 +1,752 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Header dengan Ikon Collapse</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>💐 Undangan Pernikahan</title>
+
+    <!-- Font Gaya & Menarik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(145deg, #fdf6e3 0%, #fce4d6 100%);
+            color: #2d2a24;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+
+        /* ---------- LAYAR UNDANGAN ---------- */
+        .invitation {
+            max-width: 420px;
+            width: 100%;
+            margin: 0 auto;
+            background: #fffbf7;
+            border-radius: 40px 40px 28px 28px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 80px; /* ruang untuk nav bawah */
+            border: 1px solid rgba(255, 215, 175, 0.4);
+        }
+
+        /* ---------- SETIAP HALAMAN ---------- */
+        .page {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 48px 24px 30px;
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px) scale(0.96);
+            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform, opacity;
+            background: #fffbf7;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .page.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            animation: pageEnter 0.9s ease forwards;
+        }
+
+        @keyframes pageEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.94);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .page.exit {
+            display: flex;
+            opacity: 0;
+            transform: translateY(-30px) scale(0.94);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            pointer-events: none;
+        }
+
+        /* ---------- ELEMEN ANIMASI MASUK (stagger) ---------- */
+        .page.active .anim-item {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .page.active .anim-item.delay-1 {
+            animation-delay: 0.10s;
+        }
+        .page.active .anim-item.delay-2 {
+            animation-delay: 0.25s;
+        }
+        .page.active .anim-item.delay-3 {
+            animation-delay: 0.40s;
+        }
+        .page.active .anim-item.delay-4 {
+            animation-delay: 0.55s;
+        }
+        .page.active .anim-item.delay-5 {
+            animation-delay: 0.70s;
+        }
+        .page.active .anim-item.delay-6 {
+            animation-delay: 0.85s;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- GAYA UMUM (BERWARNA) ---------- */
+        .ornament {
+            font-size: 2.4rem;
+            color: #e07c5a;
+            letter-spacing: 10px;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 8px rgba(224, 124, 90, 0.2);
+        }
+
+        .title-main {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 3.6rem;
+            background: linear-gradient(135deg, #e07c5a, #d64b8a, #a55bb0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 4px 0 8px;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(214, 75, 138, 0.15);
+        }
+
+        .sub-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #e07c5a;
+            background: rgba(255, 215, 175, 0.25);
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #fad5c0;
+            backdrop-filter: blur(4px);
+        }
+
+        .text-muted {
+            color: #4a3f3a;
+            font-weight: 600;
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 300px;
+            background: rgba(255, 245, 235, 0.5);
+            padding: 6px 16px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+
+        .divider {
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, #f7b08a, #d64b8a, #a55bb0);
+            margin: 14px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(214, 75, 138, 0.2);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #f7b08a, #e07c5a);
+            border: none;
+            color: #fff;
+            padding: 14px 44px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 24px;
+            box-shadow: 0 8px 24px rgba(224, 124, 90, 0.35);
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 36px rgba(224, 124, 90, 0.5);
+        }
+
+        .btn-next:active {
+            transform: scale(0.96);
+        }
+
+        .btn-next.secondary {
+            background: linear-gradient(135deg, #b8a0d4, #a55bb0);
+            box-shadow: 0 8px 24px rgba(165, 91, 176, 0.35);
+        }
+        .btn-next.secondary:hover {
+            box-shadow: 0 12px 36px rgba(165, 91, 176, 0.5);
+        }
+
+        /* ---------- HALAMAN COVER ---------- */
+        #cover {
+            background: linear-gradient(145deg, #fef6ed, #ffede3);
+            justify-content: center;
+            min-height: 100vh;
+            border-radius: 40px 40px 0 0;
+        }
+
+        #cover .title-main {
+            font-size: 4.2rem;
+        }
+
+        .cover-floral {
+            font-size: 3rem;
+            opacity: 0.8;
+            margin: 6px 0;
+            filter: drop-shadow(0 4px 12px rgba(224, 124, 90, 0.2));
+        }
+
+        /* ---------- HALAMAN DETAIL ---------- */
+        .detail-card {
+            background: rgba(255, 245, 235, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            padding: 24px 20px;
+            width: 100%;
+            max-width: 320px;
+            margin: 10px auto;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 215, 175, 0.5);
+        }
+
+        .detail-card .label {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #d64b8a;
+            font-weight: 700;
+        }
+        .detail-card .value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #2d2a24;
+            margin-top: 4px;
+        }
+        .detail-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 4px;
+        }
+
+        /* ---------- GALERI ---------- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 320px;
+            margin: 12px auto;
+        }
+        .gallery-grid .photo {
+            aspect-ratio: 1/1;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #fce4d6, #f7d5c0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            color: #e07c5a;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #fff;
+        }
+        .gallery-grid .photo:hover {
+            transform: scale(1.04) rotate(-2deg);
+            box-shadow: 0 8px 28px rgba(224, 124, 90, 0.2);
+        }
+
+        /* ---------- RSVP ---------- */
+        .rsvp-form {
+            width: 100%;
+            max-width: 300px;
+            margin: 12px auto 0;
+        }
+        .rsvp-form input,
+        .rsvp-form select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #f7d5c0;
+            border-radius: 60px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: #fffcf9;
+            margin-bottom: 14px;
+            outline: none;
+            transition: all 0.3s;
+            color: #2d2a24;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+        .rsvp-form input:focus,
+        .rsvp-form select:focus {
+            border-color: #e07c5a;
+            box-shadow: 0 0 0 6px rgba(224, 124, 90, 0.15);
+        }
+        .rsvp-form .btn-submit {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 60px;
+            background: linear-gradient(135deg, #d64b8a, #a55bb0);
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 28px rgba(214, 75, 138, 0.3);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .rsvp-form .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(214, 75, 138, 0.45);
+        }
+
+        /* ---------- HALAMAN PENUTUP ---------- */
+        #closing .title-main {
+            font-size: 3.2rem;
+        }
+        .heart-pulse {
+            display: inline-block;
+            animation: pulse 1.6s ease-in-out infinite;
+            font-size: 2.8rem;
+            filter: drop-shadow(0 4px 16px rgba(214, 75, 138, 0.3));
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* ============================================================
+           NAVIGASI BAWAH (BERWARNA)
+           ============================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 251, 247, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 2px solid rgba(255, 215, 175, 0.4);
+            border-radius: 32px 32px 0 0;
+            padding: 10px 6px 12px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.06);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            padding: 6px 8px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            min-width: 44px;
+            color: #b0988a;
+            text-decoration: none;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            gap: 2px;
+            flex: 1;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .nav-item .nav-icon {
+            font-size: 1.6rem;
+            line-height: 1.2;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item .nav-label {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            letter-spacing: 0.8px;
+        }
+
+        .nav-item:hover .nav-icon {
+            transform: scale(1.15) rotate(-4deg);
+        }
+
+        .nav-item.active {
+            color: #d64b8a;
+            background: rgba(214, 75, 138, 0.12);
+            border-radius: 30px;
+            padding: 6px 14px;
+        }
+
+        .nav-item.active .nav-icon {
+            transform: scale(1.08);
+        }
+
+        .nav-item.active .nav-label {
+            opacity: 1;
+            font-weight: 700;
+            color: #d64b8a;
+        }
+
+        /* ---------- RESPONSIF ---------- */
+        @media (max-width: 420px) {
+            .page {
+                padding: 36px 16px 20px;
+            }
+            #cover .title-main {
+                font-size: 3.6rem;
+            }
+            .title-main {
+                font-size: 2.8rem;
+            }
+            .detail-card {
+                padding: 18px 14px;
+            }
+            .bottom-nav {
+                padding: 8px 2px 10px;
+            }
+            .nav-item .nav-label {
+                font-size: 0.5rem;
+            }
+            .nav-item .nav-icon {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .invitation {
+                border-radius: 48px;
+                margin: 20px auto;
+                min-height: 90vh;
+            }
+            .bottom-nav {
+                border-radius: 32px 32px 0 0;
+                max-width: 420px;
+            }
+        }
+
+        /* ---------- SCROLL INDICATOR ---------- */
+        .scroll-hint {
+            font-size: 1.8rem;
+            animation: bounce 2s infinite;
+            opacity: 0.6;
+            margin-top: 12px;
+            color: #e07c5a;
+        }
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        /* Tambahan warna-warni pada latar belakang halaman */
+        .page:nth-child(2) {
+            background: #fef6ed;
+        }
+        .page:nth-child(3) {
+            background: #f5f0ff;
+        }
+        .page:nth-child(4) {
+            background: #fff0f0;
+        }
+        .page:nth-child(5) {
+            background: #f0f7f0;
+        }
+        .page:nth-child(6) {
+            background: #fff7e6;
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">Logoku</div>
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <nav class="nav">
-      <ul>
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#">Tentang</a></li>
-        <li><a href="#">Kontak</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Container untuk Sidebar dan Konten Utama -->
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <ul>
-        <li><a href="#">Menu 1</a></li>
-        <li><a href="#">Menu 2</a></li>
-        <li><a href="#">Menu 3</a></li>
-      </ul>
-    </aside>
+    <div class="invitation" id="app">
 
-    <!-- Konten Utama -->
-    <main class="main-content">
-      <h1>Konten Utama</h1>
-      <p>Ini adalah isi konten utama dari halaman web.</p>
-    </main>
-  </div>
+        <!-- ===== HALAMAN 1: COVER ===== -->
+        <div class="page active" id="cover" data-index="0">
+            <div class="anim-item delay-1 cover-floral">🌸🌼🌸</div>
+            <div class="anim-item delay-1 ornament">✦ ✦ ✦</div>
+            <div class="anim-item delay-2 title-main">Ayu &amp; Raka</div>
+            <div class="anim-item delay-3 sub-title">We're Getting Married</div>
+            <div class="anim-item delay-4 divider"></div>
+            <div class="anim-item delay-5 text-muted" style="background:rgba(255,215,175,0.3);">
+                "Bersama dalam cinta, selamanya dalam doa."
+            </div>
+            <button class="anim-item delay-6 btn-next" onclick="goToPage(1)">Buka Undangan</button>
+            <div class="anim-item delay-6 scroll-hint">⌄</div>
+        </div>
 
-  <script src="script.js"></script>
+        <!-- ===== HALAMAN 2: PEMBUKA ===== -->
+        <div class="page" id="opening" data-index="1">
+            <div class="anim-item delay-1" style="font-size:2.8rem;">💐</div>
+            <div class="anim-item delay-2 text-muted" style="max-width:280px;background:rgba(215,200,255,0.3);">
+                Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyatukan janji suci pernikahan.
+            </div>
+            <div class="anim-item delay-3 divider"></div>
+            <div class="anim-item delay-4" style="font-family:'Dancing Script',cursive;font-size:2.4rem;font-weight:700;color:#d64b8a;">
+                Ayu &amp; Raka
+            </div>
+            <div class="anim-item delay-5 text-muted" style="font-size:0.85rem;background:rgba(215,200,255,0.2);">
+                Sabtu, 12 Juni 2026
+            </div>
+            <button class="anim-item delay-6 btn-next" onclick="goToPage(2)">Lihat Detail</button>
+        </div>
+
+        <!-- ===== HALAMAN 3: DETAIL ACARA ===== -->
+        <div class="page" id="details" data-index="2">
+            <div class="anim-item delay-1 ornament">✧</div>
+            <div class="anim-item delay-2 title-main" style="font-size:2.8rem;">Akad &amp; Resepsi</div>
+            <div class="anim-item delay-3 divider"></div>
+
+            <div class="anim-item delay-4 detail-card">
+                <div class="icon">📅</div>
+                <div class="label">Tanggal</div>
+                <div class="value">Sabtu, 12 Juni 2026</div>
+            </div>
+
+            <div class="anim-item delay-5 detail-card">
+                <div class="icon">⏰</div>
+                <div class="label">Waktu</div>
+                <div class="value">09.00 – 15.00 WIB</div>
+            </div>
+
+            <div class="anim-item delay-6 detail-card">
+                <div class="icon">📍</div>
+                <div class="label">Tempat</div>
+                <div class="value" style="font-size:0.95rem;">Gedung Puspa Indah<br />Jl. Melati No. 88, Jakarta</div>
+            </div>
+
+            <button class="anim-item delay-6 btn-next secondary" onclick="goToPage(3)" style="margin-top:8px;">Galeri</button>
+        </div>
+
+        <!-- ===== HALAMAN 4: GALERI ===== -->
+        <div class="page" id="gallery" data-index="3">
+            <div class="anim-item delay-1 ornament">✦</div>
+            <div class="anim-item delay-2 title-main" style="font-size:2.6rem;">Galeri</div>
+            <div class="anim-item delay-3 text-muted" style="font-size:0.85rem;background:rgba(255,200,200,0.2);">Momen bahagia kami</div>
+            <div class="anim-item delay-4 divider"></div>
+
+            <div class="anim-item delay-4 gallery-grid">
+                <div class="photo">🌸</div>
+                <div class="photo">🌺</div>
+                <div class="photo">🌷</div>
+                <div class="photo">🌹</div>
+                <div class="photo">🌻</div>
+                <div class="photo">🌼</div>
+            </div>
+
+            <button class="anim-item delay-6 btn-next" onclick="goToPage(4)">Konfirmasi Kehadiran</button>
+        </div>
+
+        <!-- ===== HALAMAN 5: RSVP ===== -->
+        <div class="page" id="rsvp" data-index="4">
+            <div class="anim-item delay-1 ornament">✧</div>
+            <div class="anim-item delay-2 title-main" style="font-size:2.6rem;">RSVP</div>
+            <div class="anim-item delay-3 text-muted" style="font-size:0.9rem;background:rgba(180,230,180,0.2);">
+                Kami tunggu kehadiran &amp; doa restu Anda.
+            </div>
+            <div class="anim-item delay-4 divider"></div>
+
+            <div class="anim-item delay-5 rsvp-form">
+                <input type="text" placeholder="Nama Lengkap" />
+                <input type="text" placeholder="Jumlah Tamu" />
+                <select>
+                    <option value="">Konfirmasi Kehadiran</option>
+                    <option value="hadir">Hadir</option>
+                    <option value="tidak">Tidak Hadir</option>
+                </select>
+                <button class="btn-submit" onclick="alert('Terima kasih! Konfirmasi Anda telah kami terima 💛')">
+                    Kirim Konfirmasi
+                </button>
+            </div>
+
+            <button class="anim-item delay-6 btn-next secondary" onclick="goToPage(5)" style="margin-top:16px;">
+                Ucapan Terima Kasih
+            </button>
+        </div>
+
+        <!-- ===== HALAMAN 6: PENUTUP ===== -->
+        <div class="page" id="closing" data-index="5">
+            <div class="anim-item delay-1 heart-pulse">💖</div>
+            <div class="anim-item delay-2 title-main" style="font-size:3rem;">Terima Kasih</div>
+            <div class="anim-item delay-3 text-muted" style="max-width:280px;background:rgba(255,215,175,0.25);">
+                Semoga Allah SWT meridhoi langkah kami. Kami mohon doa restu untuk kebahagiaan kami berdua.
+            </div>
+            <div class="anim-item delay-4 divider"></div>
+            <div class="anim-item delay-5" style="font-family:'Dancing Script',cursive;font-size:2.2rem;font-weight:700;color:#a55bb0;">
+                Ayu &amp; Raka
+            </div>
+            <div class="anim-item delay-6 text-muted" style="font-size:0.75rem;background:transparent;">
+                #AyuRaka2026
+            </div>
+            <button class="anim-item delay-6 btn-next" onclick="goToPage(0)" style="margin-top:20px;background:linear-gradient(135deg,#a55bb0,#d64b8a);">
+                🔄 Kembali ke Awal
+            </button>
+        </div>
+
+        <!-- ============================================================
+        NAVIGASI BAWAH (BERWARNA)
+        ============================================================ -->
+        <nav class="bottom-nav" id="bottomNav">
+            <button class="nav-item active" data-index="0" onclick="goToPage(0)">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Beranda</span>
+            </button>
+            <button class="nav-item" data-index="1" onclick="goToPage(1)">
+                <span class="nav-icon">💌</span>
+                <span class="nav-label">Pembuka</span>
+            </button>
+            <button class="nav-item" data-index="2" onclick="goToPage(2)">
+                <span class="nav-icon">📋</span>
+                <span class="nav-label">Detail</span>
+            </button>
+            <button class="nav-item" data-index="3" onclick="goToPage(3)">
+                <span class="nav-icon">🖼️</span>
+                <span class="nav-label">Galeri</span>
+            </button>
+            <button class="nav-item" data-index="4" onclick="goToPage(4)">
+                <span class="nav-icon">📝</span>
+                <span class="nav-label">RSVP</span>
+            </button>
+            <button class="nav-item" data-index="5" onclick="goToPage(5)">
+                <span class="nav-icon">💖</span>
+                <span class="nav-label">Penutup</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  NAVIGASI HALAMAN DENGAN TRANSISI
+        // ============================================================
+
+        const pages = document.querySelectorAll('.page');
+        const navItems = document.querySelectorAll('.nav-item');
+        let currentIndex = 0;
+        let isTransitioning = false;
+
+        function goToPage(index) {
+            if (isTransitioning) return;
+            if (index === currentIndex) return;
+            if (index < 0 || index >= pages.length) return;
+
+            isTransitioning = true;
+
+            const currentPage = pages[currentIndex];
+            const nextPage = pages[index];
+
+            // 1. Halaman saat ini keluar
+            currentPage.classList.add('exit');
+            currentPage.classList.remove('active');
+
+            // 2. Setelah transisi keluar, tampilkan halaman baru
+            setTimeout(() => {
+                currentPage.style.display = 'none';
+                currentPage.classList.remove('exit');
+
+                nextPage.style.display = 'flex';
+                void nextPage.offsetWidth; // force reflow
+                nextPage.classList.add('active');
+
+                // Update indeks & navigasi
+                currentIndex = index;
+                updateNav(index);
+                isTransitioning = false;
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            }, 520);
+        }
+
+        // ============================================================
+        //  UPDATE NAVIGASI AKTIF
+        // ============================================================
+        function updateNav(index) {
+            navItems.forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // ============================================================
+        //  INISIALISASI
+        // ============================================================
+        (function init() {
+            pages.forEach((p, i) => {
+                if (i === 0) {
+                    p.style.display = 'flex';
+                    p.classList.add('active');
+                } else {
+                    p.style.display = 'none';
+                    p.classList.remove('active');
+                }
+            });
+            currentIndex = 0;
+            updateNav(0);
+        })();
+
+        console.log('💐 Undangan warna-warni siap!');
+    </script>
+
 </body>
 </html>
